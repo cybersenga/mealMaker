@@ -1,0 +1,52 @@
+let menu = {
+  courses: {
+    appetizers: [],
+    mains: [],
+    desserts: [],
+  },
+  addDishToCourse(courseName, dishName, dishPrice) {
+    const dish = {
+      name: dishName,
+      price: dishPrice,
+    };
+    menu.courses[courseName].push(dish);
+  },
+  getRandomDishFromCourse(courseName) {
+    const dishes = menu.courses[courseName];
+    const randomIndex = Math.floor(Math.random() * dishes.length);
+    return dishes[randomIndex];
+  },
+  generateRandomMeal() {
+    const appetizer = menu.getRandomDishFromCourse("appetizers");
+    const main = menu.getRandomDishFromCourse("mains");
+    const dessert = menu.getRandomDishFromCourse("desserts");
+
+    return `Your randomly selected dishes are - Appetizer: ${appetizer.name} $${
+      appetizer.price
+    }, 
+        Main: ${main.name} $${main.price} and Dessert: ${dessert.name} $${
+      dessert.price
+    }. 
+        This meal would cost $${
+          appetizer.price + main.price + dessert.price
+        } .`;
+  },
+};
+
+menu.addDishToCourse("appetizers", "puff-puff", 10);
+menu.addDishToCourse("appetizers", "spring rolls", 5);
+menu.addDishToCourse("appetizers", "suya", 15);
+
+menu.addDishToCourse("mains", "Poundo", 190);
+menu.addDishToCourse("mains", "Moi-moi", 50);
+menu.addDishToCourse("mains", "Jollof rice", 60);
+
+menu.addDishToCourse("desserts", "cake", 15);
+menu.addDishToCourse("desserts", "ice-cream", 5);
+menu.addDishToCourse("desserts", "maple cheesecake", 5);
+
+console.log(menu);
+
+var meal = menu.generateRandomMeal();
+console.log(meal);
+
